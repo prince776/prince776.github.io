@@ -1,0 +1,12 @@
+# Writing published on other sites. Listed after your own posts.
+- title: "When a CPU Instruction Lies: Debugging Silent Data Corruption in the Cloud"
+  url: https://www.rubrik.com/blog/architecture/26/6/when-a-cpu-instruction-lies-debugging-silent-data-corruption-in-the-cloud
+  source: Rubrik Engineering
+  extra_url: https://news.ycombinator.com/item?id=48645126
+  extra_label: discuss on HN
+
+- title: "Show HN: LLMTor – Access public LLMs anonymously using blind signatures and Tor"
+  url: https://news.ycombinator.com/item?id=47298201
+  source: Hacker News
+  extra_url: https://llmtor.com
+  extra_label: llmtor.com

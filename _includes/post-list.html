@@ -1,0 +1,14 @@
+<ul class="entries">
+  {% for post in site.posts %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    <span class="meta">{{ post.date | date: "%b %Y" }}</span>
+  </li>
+  {% endfor %}
+  {% for item in site.data.elsewhere %}
+  <li>
+    <a href="{{ item.url }}">{{ item.title }}</a>
+    <span class="meta">{{ item.source }}{% if item.extra_url %} &middot; <a href="{{ item.extra_url }}">{{ item.extra_label }}</a>{% endif %}</span>
+  </li>
+  {% endfor %}
+</ul>

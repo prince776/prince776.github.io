@@ -1,0 +1,25 @@
+title: Prince Gupta
+description: Software engineer. Writing about low-level systems, codebases, and building things from scratch.
+url: https://prince776.github.io
+author: Prince Gupta
+twitter:
+  username: codemastercppYT
+
+permalink: /blog/:title/
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: plaintext
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+exclude:
+  - README.md
