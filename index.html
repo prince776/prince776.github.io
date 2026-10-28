@@ -4,20 +4,46 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prince Gupta</title>
-  <meta name="description" content="Prince Gupta — software engineer. Writing, videos, and links.">
+  <meta name="description" content="Prince Gupta — software engineer. Writing, videos, projects, and links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <header>
+  <!-- Icons: Lucide (ISC license) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+    <symbol id="i-twitter" viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+  </svg>
+
+  <nav class="topnav">
+    <div class="topnav-inner">
+      <a class="brand" href="#top">Prince Gupta</a>
+      <ul>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#cp">CP</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
       <h1>Prince Gupta</h1>
-      <p class="lede">Software engineer. I like low-level stuff and building systems from scratch &mdash; networking stacks, operating systems, databases &mdash; and writing about what I learn along the way.</p>
+      <p class="lede">Software engineer. I like low-level stuff and building systems from scratch &mdash; networking stacks, operating systems, databases &mdash; and writing and making videos about what I learn along the way.</p>
+      <ul class="socials">
+        <li><a href="https://github.com/prince776" aria-label="GitHub" title="GitHub"><svg class="icon"><use href="#i-github"/></svg></a></li>
+        <li><a href="https://x.com/codemastercppYT" aria-label="Twitter" title="Twitter"><svg class="icon"><use href="#i-twitter"/></svg></a></li>
+        <li><a href="https://www.youtube.com/@codemastercpp" aria-label="YouTube" title="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/prince776/" aria-label="LinkedIn" title="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a></li>
+      </ul>
     </header>
 
-    <section>
+    <section id="writing">
       <h2>Writing</h2>
       <ul class="entries">
         <li>
@@ -31,28 +57,111 @@
       </ul>
     </section>
 
-    <section>
+    <section id="videos">
+      <h2>Videos</h2>
+      <ul class="videos">
+        <li>
+          <a href="https://www.youtube.com/watch?v=5kiA2jg3s2o">
+            <img src="https://i.ytimg.com/vi/5kiA2jg3s2o/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">What&rsquo;s In A Codebase &ndash; Google&rsquo;s gRPC</span>
+          </a>
+          <span class="meta">2024</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=WaQdwkkqqYE">
+            <img src="https://i.ytimg.com/vi/WaQdwkkqqYE/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">What&rsquo;s In A Codebase &ndash; Git</span>
+          </a>
+          <span class="meta">2025</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=-ya-QmJAWek">
+            <img src="https://i.ytimg.com/vi/-ya-QmJAWek/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">Kubernetes Is Weird &ndash; What&rsquo;s In A Codebase</span>
+          </a>
+          <span class="meta">2025</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=Wm_anHlatrI">
+            <img src="https://i.ytimg.com/vi/Wm_anHlatrI/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">Writing a Data Race Detector in Go from Scratch</span>
+          </a>
+          <span class="meta">2025</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=bjj17YCu8DI">
+            <img src="https://i.ytimg.com/vi/bjj17YCu8DI/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">I Created a Snake Game, and an OS to Run It</span>
+          </a>
+          <span class="meta">2023</span>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=2UqmrIPz1HY">
+            <img src="https://i.ytimg.com/vi/2UqmrIPz1HY/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+            <span class="vtitle">What It&rsquo;s Like Programming Without an Operating System</span>
+          </a>
+          <span class="meta">2022</span>
+        </li>
+      </ul>
+      <p class="more"><a href="https://www.youtube.com/@codemastercpp">All videos &rarr;</a></p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="entries">
+        <li>
+          <a href="https://llmtor.com">LLMTor</a>
+          <span class="meta">A privacy layer for using frontier LLMs anonymously.</span>
+        </li>
+        <li>
+          <a href="https://github.com/prince776/systems-viewer">systems-viewer</a>
+          <span class="meta">See a Go codebase as systems: interfaces, laws, wiring, data, flows. A Claude Code plugin.</span>
+        </li>
+        <li>
+          <a href="https://github.com/prince776/hyperflow">hyperflow</a>
+          <span class="meta">An HTTP/2 implementation in Rust.</span>
+        </li>
+        <li>
+          <a href="https://github.com/prince776/DimOS">DimOS</a>
+          <span class="meta">A hobby operating system.</span>
+        </li>
+        <li>
+          <a href="https://github.com/prince776/haskell-git">haskell-git</a>
+          <span class="meta">A Git-like version control system in pure FP.</span>
+        </li>
+        <li>
+          <a href="https://c2-ladders.com/">C2Ladders</a>
+          <span class="meta">A reconstruction of the old A2OJ ladders with an updated problem set.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="cp">
       <h2>Competitive Programming</h2>
       <ul class="entries">
         <li>
           <a href="https://codeforces.com/profile/codemastercpp">Codeforces</a>
           <span class="meta">Candidate Master &middot; max rating 2076</span>
         </li>
+      </ul>
+      <ul class="links">
         <li><a href="https://www.codechef.com/users/codemastercpp">CodeChef</a></li>
         <li><a href="https://atcoder.jp/users/codemastercpp">AtCoder</a></li>
         <li><a href="https://leetcode.com/u/codemastercpp/">LeetCode</a></li>
       </ul>
     </section>
-
-    <section>
-      <h2>Elsewhere</h2>
-      <ul class="links">
-        <li><a href="https://github.com/prince776">GitHub</a></li>
-        <li><a href="https://x.com/codemastercppYT">Twitter</a></li>
-        <li><a href="https://www.youtube.com/@codemastercpp">YouTube</a></li>
-        <li><a href="https://www.linkedin.com/in/prince776/">LinkedIn</a></li>
-      </ul>
-    </section>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; Prince Gupta</span>
+      <ul class="socials small">
+        <li><a href="https://github.com/prince776" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a></li>
+        <li><a href="https://x.com/codemastercppYT" aria-label="Twitter"><svg class="icon"><use href="#i-twitter"/></svg></a></li>
+        <li><a href="https://www.youtube.com/@codemastercpp" aria-label="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/prince776/" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>
