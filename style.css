@@ -247,6 +247,7 @@ pre {
   border-radius: 6px;
   padding: 1rem 1.15rem;
   overflow-x: auto;
+  tab-size: 4;
   margin: 0 0 1.5rem;
 }
 
