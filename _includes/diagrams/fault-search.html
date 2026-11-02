@@ -1,0 +1,105 @@
+<figure class="diagram fs" aria-labelledby="fs-cap">
+  <div class="fs-tags">
+    <div class="fs-row"><span class="fs-label">observed</span><code class="fs-tag" data-observed></code></div>
+    <div class="fs-row"><span class="fs-label">emulated</span><code class="fs-tag" data-emulated></code></div>
+  </div>
+
+  <p class="fs-step">1. Pick an instruction to fault</p>
+  <div class="fs-trace" data-trace role="group" aria-label="Instructions"></div>
+
+  <div class="fs-controls">
+    <div class="fs-ctl">
+      <span class="fs-step">2. Where</span>
+      <div class="fs-seg" data-sites role="group" aria-label="Fault site"></div>
+    </div>
+    <label class="fs-ctl">
+      <span class="fs-step">3. Flip bit <output data-bitval>0</output></span>
+      <input type="range" min="0" max="127" value="0" data-bit>
+    </label>
+  </div>
+
+  <p class="fs-status" data-status aria-live="polite"></p>
+  <button type="button" class="fs-find" data-find>Find the match for me</button>
+
+  <figcaption id="fs-cap">Each choice is one candidate fault. The emulator re-runs the encryption with that fault and compares the tag it gets with the one the faulty machine produced. Digits in brick don't match.</figcaption>
+</figure>
+<script>
+(function () {
+  var fig = document.currentScript.previousElementSibling;
+  var OBS = "3f9c07d2a1e4b85c6d10f7a29e43bc81";
+  var TRACE = ["movdqu","pxor","aesenc","aesenc","aesenc","aesenclast","pxor","pshufb","movdqa",
+               "pclmulqdq","pclmulqdq","pclmulqdq","pxor","psrldq","pslldq","pxor","pclmulqdq",
+               "pshufd","pxor","pclmulqdq","pxor","pxor","pshufb","movdqu"];
+  var SITES = ["dst", "src1", "src2"];
+  var MATCH = { insn: 10, site: "dst", bit: 72 }; // illustrative
+  var state = { insn: -1, site: "dst", bit: 0 };
+
+  var $ = function (s) { return fig.querySelector(s); };
+  var emuEl = $("[data-emulated]"), statusEl = $("[data-status]");
+  var bitEl = $("[data-bit]"), bitVal = $("[data-bitval]");
+  $("[data-observed]").textContent = OBS;
+
+  // Deterministic stand-in for "run the emulator with this fault":
+  // a different pseudo-random tag per candidate, except the real match.
+  function tagFor(key) {
+    var h = 2166136261;
+    for (var i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+    var s = "";
+    for (var j = 0; j < 32; j++) {
+      h ^= h << 13; h ^= h >>> 17; h ^= h << 5;
+      s += "0123456789abcdef"[(h >>> 0) % 16];
+    }
+    return s;
+  }
+
+  var chips = TRACE.map(function (op, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = op; b.setAttribute("aria-pressed", "false");
+    b.title = "Instruction " + (i + 1);
+    b.addEventListener("click", function () { state.insn = i; render(); });
+    $("[data-trace]").appendChild(b);
+    return b;
+  });
+  var siteBtns = SITES.map(function (s) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = s;
+    b.addEventListener("click", function () { state.site = s; render(); });
+    $("[data-sites]").appendChild(b);
+    return b;
+  });
+  bitEl.addEventListener("input", function () { state.bit = +bitEl.value; render(); });
+  $("[data-find]").addEventListener("click", function () {
+    state.insn = MATCH.insn; state.site = MATCH.site; state.bit = MATCH.bit; render();
+  });
+
+  function render() {
+    chips.forEach(function (c, i) { c.setAttribute("aria-pressed", i === state.insn ? "true" : "false"); });
+    siteBtns.forEach(function (b) { b.setAttribute("aria-pressed", b.textContent === state.site ? "true" : "false"); });
+    bitEl.value = state.bit; bitVal.textContent = state.bit;
+
+    var tag, hit = false;
+    if (state.insn < 0) {
+      tag = tagFor("no-fault");
+    } else {
+      hit = state.insn === MATCH.insn && state.site === MATCH.site && state.bit === MATCH.bit;
+      tag = hit ? OBS : tagFor(state.insn + ":" + state.site + ":" + state.bit);
+    }
+    var diff = 0;
+    emuEl.innerHTML = tag.split("").map(function (c, i) {
+      if (c === OBS[i]) return c;
+      diff++; return '<span class="fs-diff">' + c + "</span>";
+    }).join("");
+
+    fig.classList.toggle("fs-matched", hit);
+    if (state.insn < 0) {
+      statusEl.textContent = "No fault injected yet: the emulator computes the correct tag, which doesn't match what the faulty machine produced.";
+    } else if (hit) {
+      statusEl.textContent = "✓ Exact match. A single flipped bit in this pclmulqdq's result reproduces the corrupted tag.";
+    } else {
+      statusEl.textContent = "✗ No match: " + diff + " of 32 hex digits differ. " +
+        (TRACE.length * SITES.length * 128 - 1).toLocaleString() + " other candidates to try.";
+    }
+  }
+  render();
+})();
+</script>

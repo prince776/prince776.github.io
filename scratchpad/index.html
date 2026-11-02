@@ -1,0 +1,19 @@
+---
+layout: default
+title: Scratchpad
+---
+<header class="page-head">
+  <h1>Scratchpad</h1>
+  <p class="lede">Longer notes and writeups that go with my posts.</p>
+</header>
+
+<section>
+  <ul class="entries">
+    {% for note in site.scratchpad %}
+    <li>
+      <a href="{{ note.url }}">{{ note.title }}</a>
+      {% if note.parent_title %}<span class="meta">Notes for <a href="{{ note.parent_url }}">{{ note.parent_title }}</a></span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

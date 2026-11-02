@@ -23,3 +23,18 @@ feed:
 
 exclude:
   - README.md
+  - serve.sh
+
+# Long-form notes and writeups, linked from posts but not listed on the
+# homepage, blog index, or RSS feed.
+collections:
+  scratchpad:
+    output: true
+    permalink: /scratchpad/:name/
+
+defaults:
+  - scope:
+      type: scratchpad
+    values:
+      layout: post
+      kicker: Scratchpad

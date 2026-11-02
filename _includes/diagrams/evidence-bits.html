@@ -1,0 +1,32 @@
+<figure class="diagram eb" data-evidence-bits aria-labelledby="eb-cap">
+  <div class="eb-row">
+    <p class="eb-title">Specific faults <span class="eb-dim">(single-bit, word flips, …) · |F| ≈ 2²⁴</span></p>
+    <div class="eb-bar" data-spent="24"></div>
+    <p class="eb-legend"><span class="eb-key eb-key-spent"></span>24 bits spent on the search <span class="eb-key eb-key-left"></span>104 bits of evidence left</p>
+  </div>
+  <div class="eb-row">
+    <p class="eb-title">Arbitrary GHASH-state corruption <span class="eb-dim">· |F| = 2¹²⁸</span></p>
+    <div class="eb-bar" data-spent="128"></div>
+    <p class="eb-legend"><span class="eb-key eb-key-spent"></span>all 128 bits spent: it explains every tag, so it proves nothing</p>
+  </div>
+  <figcaption id="eb-cap">The tag carries 128 bits. Every bit of freedom you give the fault model is one bit less of evidence.</figcaption>
+</figure>
+<script>
+(function () {
+  var fig = document.currentScript.previousElementSibling;
+  var bars = fig.querySelectorAll(".eb-bar");
+  bars.forEach(function (bar) {
+    var spent = +bar.dataset.spent;
+    for (var i = 0; i < 128; i++) {
+      var c = document.createElement("span");
+      c.className = i < spent ? "spent" : "left";
+      c.style.transitionDelay = (i * 6) + "ms";
+      bar.appendChild(c);
+    }
+  });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { fig.classList.add("eb-on"); return; }
+  new IntersectionObserver(function (es, obs) {
+    if (es[0].isIntersecting) { obs.disconnect(); fig.classList.add("eb-on"); }
+  }, { threshold: 0.5 }).observe(fig);
+})();
+</script>

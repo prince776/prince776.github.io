@@ -1,0 +1,8 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+
+# Unpublished writing awaiting approval (kept local only; public repo)
+_drafts/
+_scratchpad/how-sure-fault-replay.md

@@ -1,0 +1,45 @@
+<figure class="diagram gf" aria-labelledby="gf-cap">
+  <svg viewBox="0 10 760 186" role="img" aria-label="Plaintext goes through AES-CTR to produce correct ciphertext. The ciphertext then feeds GHASH, a chain of multiply-by-H steps that produces the tag. A one-bit fault in the second multiply carries through the rest of the chain, so only the tag is wrong.">
+    <defs>
+      <marker id="gf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" class="dg-head"/>
+      </marker>
+      <marker id="gf-arrow-bad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" class="gf-head-bad"/>
+      </marker>
+    </defs>
+
+    <!-- Encryption: plaintext -> AES-CTR -> ciphertext -->
+    <rect class="dg-box" x="20" y="24" width="110" height="36" rx="5"/>
+    <text class="dg-t" x="75" y="46">Plaintext</text>
+    <line class="dg-l" x1="130" y1="42" x2="168" y2="42" marker-end="url(#gf-arrow)"/>
+    <rect class="dg-box" x="170" y="24" width="100" height="36" rx="5"/>
+    <text class="dg-t" x="220" y="46">AES-CTR</text>
+    <line class="dg-l" x1="270" y1="42" x2="298" y2="42" marker-end="url(#gf-arrow)"/>
+    <rect class="dg-box gf-ok" x="300" y="24" width="120" height="36" rx="5"/>
+    <text class="dg-t" x="360" y="46">Ciphertext ✓</text>
+
+    <!-- Authentication: ciphertext -> GHASH (×H chain) -> tag -->
+    <line class="dg-l" x1="360" y1="60" x2="360" y2="128" marker-end="url(#gf-arrow)"/>
+    <text class="dg-t dg-lab gf-grouplab" x="648" y="178">GHASH</text>
+    <rect class="gf-group" x="300" y="104" width="360" height="80" rx="8"/>
+    <rect class="dg-box" x="320" y="130" width="80" height="34" rx="5"/>
+    <text class="dg-t" x="360" y="151">×H</text>
+    <line class="dg-l" x1="400" y1="147" x2="438" y2="147" marker-end="url(#gf-arrow)"/>
+    <rect class="dg-box gf-bad" x="440" y="130" width="80" height="34" rx="5"/>
+    <text class="dg-t gf-bad-t" x="480" y="151">×H</text>
+    <line class="gf-l-bad" x1="520" y1="147" x2="558" y2="147" marker-end="url(#gf-arrow-bad)"/>
+    <rect class="dg-box gf-bad" x="560" y="130" width="80" height="34" rx="5"/>
+    <text class="dg-t gf-bad-t" x="600" y="151">×H</text>
+    <line class="gf-l-bad" x1="640" y1="147" x2="678" y2="147" marker-end="url(#gf-arrow-bad)"/>
+    <rect class="dg-box gf-tag" x="680" y="130" width="70" height="34" rx="5"/>
+    <text class="dg-t gf-tag-t" x="715" y="151">Tag ✗</text>
+
+    <!-- The fault -->
+    <g transform="translate(480 112)" class="gf-burst">
+      <path d="M0,-9 L2.5,-2.5 L9,-2.5 L4,1.8 L5.8,8.5 L0,4.2 L-5.8,8.5 L-4,1.8 L-9,-2.5 L-2.5,-2.5 z"/>
+    </g>
+    <text class="dg-t gf-note" x="480" y="94">one bit flipped</text>
+  </svg>
+  <figcaption id="gf-cap">The fault hit one multiply inside GHASH. Every later multiply carried the error into the tag. Encryption never goes through GHASH, so the ciphertext stayed correct.</figcaption>
+</figure>
